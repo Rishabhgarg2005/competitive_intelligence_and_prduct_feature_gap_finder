@@ -8,7 +8,7 @@ nltk.download('punkt')
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
-from nltk import word_tokenizer
+
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 data =pd.read_csv("single_qna.csv")
@@ -18,8 +18,10 @@ data.drop(columns ="AnswerType",inplace =True)
 data.drop(columns ="Asin",inplace =True)
 df_cleaned =data.dropna()
 print(df_cleaned.isnull().sum())
+def convert(text):
+  tokens =word_tokenize(str(text).lower())
+  cleaned_tokens =[w for w in tokens if w.isalnum() and w not in stop_words]
+  return"".join(cleaned_tokens)
 
-
-
-
-
+data["cleaned"]=data["Question"].apply(convert)
+print(data["cleaned"].str.split())
