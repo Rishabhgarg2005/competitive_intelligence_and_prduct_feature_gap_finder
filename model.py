@@ -100,7 +100,7 @@ print(confusion_matrix(y_pred,Y_val))
 print(classification_report(Y_val,y_pred))
 print(accuracy_score(Y_val,y_pred))
 
-model.save_model("sentiment_classifier.json")
+model.save_model("sentiment_classifier.model.json")
 
 
 
